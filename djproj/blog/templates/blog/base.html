@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!-- Parent file for home and about-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    {% if title %}
+        <title> New Post - {{title}} </title>
+    {% else %}
+        <title> New Post </title>
+    {% endif %}
+</head>
+<body>
+    {% block content %} <!-- block is the code which children can override for -->
+    {% endblock content %}
+</body>
+</html>
