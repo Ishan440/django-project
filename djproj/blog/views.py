@@ -1,12 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . models import Post
 
-
-# dummy info to pass to templates so that our pages have dynamic views.
-posts = [
-    {'author': 'Ishan', 'content': 'First blog post', 'date': 'Dec 13'},
-    {'author': 'NOT Ishan', 'content': 'First blog post', 'date': 'Dec 15'}
-]
 
 # Create your views here.
 
@@ -15,7 +10,7 @@ def home(request):
     :param request: this page was requested
     :return: http response upon taking the requested route i.e. the view of the page
     """
-    context = {'posts': posts}
+    context = {'posts': Post.objects.all()}
     # return HttpResponse('<h1> Blog Home </h1>'). We'll return a template instead using render:
     return render(request, 'blog/home.html', context)
     # django looks into the templates folder by default.
