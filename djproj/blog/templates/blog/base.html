@@ -46,6 +46,15 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
+            {% if messages %} <!-- view for the flash messages. Making it in base so that flash messages show on all pages that use it.-->
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags}}}" > <!-- bootstrap and
+                django flash messages have same syntax so message tag will be similar to alert tag. for rx, a success
+                tag will make this alert a success alert. -->
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
           {% block content %}{% endblock content %}
         </div>
         <div class="col-md-4">
