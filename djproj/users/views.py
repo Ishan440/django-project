@@ -1,10 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
+
 # ^ for flash messages to show success or some kind of one time sign
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.shortcuts import redirect, render
+from .forms import UserRegisterForm
 # Create your views here.
 
 
@@ -16,13 +14,13 @@ def register(request):
     :return:
     """
     if request.method == "POST":
-        form = UserCreationForm(request.POST)  # if post request is received, then a form will be made with that data.
+        form = UserRegisterForm(request.POST)  # if post request is received, then a form will be made with that data.
         if form.is_valid():
+            form.save()  # ensures that we save the user info to our db.
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')  # fstring is basically str.format()
             return redirect('blog-home')
     else:
-        messages.error(request, "nope")
-        form = UserCreationForm()  # Create an instance of the user registration form. blank form.
+        form = UserRegisterForm()  # Create an instance of the user registration form. blank form.
 
     return render(request, 'users/register.html', {'form': form})
