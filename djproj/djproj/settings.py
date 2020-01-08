@@ -123,3 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # CRISPY_TEMPLATE_PACK = 'boostrap4'
+
+LOGIN_REDIRECT_URL = 'blog-home'
+# if user tries to access any page that requires auth then this will ensure that they login first:
+LOGIN_URL = 'login'
