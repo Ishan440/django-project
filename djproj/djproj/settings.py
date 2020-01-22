@@ -123,7 +123,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # CRISPY_TEMPLATE_PACK = 'boostrap4'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# path to a directory that holds all our image files.
+# Otherwise dirs clutter up. stored in system not database so we need the path. this is a
+# path to a foldr called media in out project's base directory. So instead of profile pics
+# being a separate directory, in main app di, it'll be a subdir in our media dir.
 
+MEDIA_URL = '/media/'  # browsers url for accessing those pics
 LOGIN_REDIRECT_URL = 'blog-home'
 # if user tries to access any page that requires auth then this will ensure that they login first:
 LOGIN_URL = 'login'
