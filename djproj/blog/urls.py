@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path
 from . import views
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 
 urlpatterns = [
-    path('', views.home, name='blog-home'),
+    path('', views.PostListView.as_view(), name='blog-home'),
+    # for class based our path must be of format: app/model_typeofview.html. But we can specify template path in
+    # our view class.
     # empty path name means home page, for others, do admin/ or store/.
     # view.home mean exec home function in view file.
     # name is the name for this path. used blog-home to not confuse with other webapps' homes.
-    path('about/', views.about, name='blog-about')
+    path('about/', views.about, name='blog-about'),
     # the trailing slash at the end ensures that django redirects paths without a / also to that route.
+    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    # different urls for diff posts are determined by the post's primary key (pk). we spec int type.
+    path('post/new/', views.PostCreateView.as_view(), name='post-create'),
+    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
+    path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete')
 ]

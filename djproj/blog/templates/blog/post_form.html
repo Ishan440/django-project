@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %} <!-- Important to have -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Blog Post </legend> <!-- bootstrap class-->
+                <!--{{ form.as_p }}  The as_p tag makes it in paragraph format instead of continuous lines.-->
+                {{ form|crispy }} <!--But with crispy forms we don't need that-->
+            </fieldset>
+            <div class="form-group"> <!-- to make our form look nicer-->
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+        </div>
+{% endblock content %}
